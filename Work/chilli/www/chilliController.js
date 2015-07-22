@@ -112,8 +112,8 @@ function getCookie(name){
 function connect() {
     
 	var username =  document.getElementById('username').value ;
-    var password =  document.getElementById('password').value ;
-    var company =  document.getElementById('company').value ; 	
+        var password =  document.getElementById('password').value ;
+    	var company =  document.getElementById('company').value ; 	
 	
     if (username == null || username == ''||password == null || password == ''||company == null ||company == '') {
 	document.getElementById("button").disabled=false;
@@ -121,10 +121,10 @@ function connect() {
 	}
 	document.getElementById("button").value="Verifying";
 	document.getElementById("button").disabled=true;
-    document.cookie="name"+"="+username;
+    	document.cookie="name"+"="+username;
 	document.cookie="mob"+"="+password;
 	document.cookie="company"+"="+company;	
-    //showWaitPage(1000);
+    	//showWaitPage(1000);
 	document.cookie="valid"+"="+"0";
 	//document.cookie="inval"+"="+"1";
 	var request = new XMLHttpRequest();
@@ -134,7 +134,7 @@ function connect() {
 	var res=getCookie("valid");
 	//var res2=getCookie("inval");
 	if(res=="1") {
-	chilliController.logon( "user1" , "password" ) ;
+	chilliController.logon( "user1" , "password" ) ;//same user is used instead of creating different users, but each login is assigned a different session id
 	document.getElementById("button").value="Verify";
 	document.getElementById("button").disabled=false;
 	}
