@@ -140,6 +140,8 @@ We need to make a few modifications to the /etc/network/interfaces file.</p>
 <p><em># mysql -u root -p radius &lt; schema.sql</em></p>
 
 <p>We can then see the tables using the <em>show tables</em> command within <em>mysql </em></p>
+<p>Now, insert a user into radcheck</p><br>
+<em>mysql> insert into radcheck (id, username, attribute, op, value) values ('1', 'user1', 'Cleartext-Password', ':=', 'password');</em>
 <hr>
 <p>Now, we configure the radius server. We need to add an entry in /etc/freeradius/clients.conf for the local network. Remember to use the correct network.</p>
 
@@ -159,7 +161,7 @@ We need to make a few modifications to the /etc/network/interfaces file.</p>
 NOTE that if an error binding port message is received, we need to use the ps -aux command to find the pid of running radius process and use kill -9 PID and execute above command again</em>.</p>
 
 <p>It should now be ready to process requests. Now, open up another terminal.<br>
-<em># radtest user1 password localhost 0 testing123</em></p>
+<em># radtest user1 password localhost 0 testing123</em> --Note that testing123 is default</p>
 
 <p>This should output the following line :</p>
 
