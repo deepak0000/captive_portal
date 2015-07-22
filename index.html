@@ -36,9 +36,10 @@
 <li>Router</li>
 </ul>
 
-<p><strong>First things first, install Raspbian.</strong></p>
+<p><strong>First things first, install Raspbian.</strong></p><br>
+<p>We use Raspbian instead of Windows 10 for IoT as webserver features were limited at the time of project creation and also because we use CoovaChilli.</p>
 
-<p><a href="https://www.raspberrypi.org/downloads/" target="_blank">Raspberry Pi downloads</a></p>
+<br><p><a href="https://www.raspberrypi.org/downloads/" target="_blank">Raspberry Pi downloads</a></p>
 
 <p>Complete the setup.</p>
 
@@ -56,8 +57,8 @@
 <em> $ sudo apt-get install apache2 openssl perl         </em></p>
 
 <p>We need 2 interfaces, one that connects to the internet and another that is used by CoovaChilli to manage our hotspot clients.
-We can use either 2 ethernet cables or an ethernet cable and a wifi dongle, the steps to be followed for either method is discussed below. <br>
-If we use a wireless dongle as the interface that connects to the internet, and an ethernet cable that is managed by CoovaChilli : </p>
+We can use either 2 ethernet cables or an ethernet cable and a wifi dongle, the steps to be followed for either method are discussed below. <br>
+<br><strong>If we use a wireless dongle as the interface that connects to the internet, and an ethernet cable that is managed by CoovaChilli :</strong> </p>
 
 <p>Back up every file before modifying it. (Just in case there’s a problem later and the original files are needed)</p>
 
@@ -104,7 +105,7 @@ We need to make a few modifications to the /etc/network/interfaces file.</p>
 
 <p>Run <em>ifconfig</em> to make sure that <em>eth0</em> now has a static IP of 10.1.1.1</p>
 
-<p>If we use 2 ethernet cables :</p>
+<br><p><strong>If we use 2 ethernet cables :</strong></p>
 
 <p><em>$ sudo nano /etc/network/interfaces</em></p>
 
