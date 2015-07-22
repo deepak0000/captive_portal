@@ -1,71 +1,373 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Secure network by zethingy</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-dark.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
     <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
+    <title>Secure network by zethingy</title>
   </head>
+
   <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/zethingy/Secure_network">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/zethingy/Secure_network/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/zethingy/Secure_network/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
+    <header>
+      <div class="inner">
+        <h1>Secure network</h1>
+        <h2>Captive portal creation</h2>
+        <a href="https://github.com/zethingy/Secure_network" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
 
-    <div class="wrapper">
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <p>REQUIREMENTS :</p>
 
-      <section>
-        <div id="title">
-          <h1>Secure network</h1>
-          <p>Captive portal creation</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/zethingy">zethingy</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-        </div>
+<ul>
+<li>Raspberry pi</li>
+<li>WIFI dongle or ethernet to USB adapter</li>
+<li>Router</li>
+</ul>
 
-        <h3>
-<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+<p><strong>First things first, install Raspbian.</strong></p>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you’re using GitHub for Mac or GitHub for Windows, simply sync your repository and you’ll see the new branch.</p>
+<p><a href="https://www.raspberrypi.org/downloads/" target="_blank">Raspberry Pi downloads</a></p>
 
-<h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<p>Complete the setup.</p>
 
-<p>We’ve crafted some handsome templates for you to use. Go ahead and click 'Continue to layouts' to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved.</p>
+<p>Now, we need to install some software on the Raspberry pi. We first perform a software update:</p>
 
-<h3>
-<a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating pages manually</h3>
+<p><em>$ sudo apt-get update &amp;&amp; sudo apt-get upgrade</em></p>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>We’ll be using CoovaChilli to create the captive portal, so we need to install the packages for it.</p>
 
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<p>We also need a web server (Apache2), a database server (MySQL), a scripting language to process requests (perl or php) and the Free Radius authentication server<em>.<br>
+</em></p>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p><em>$ sudo apt-get install mysql-client mysql-server</em><br>
+<em> $ sudo apt-get install freeradius freeradius-utils freeradius-mysql</em><br>
+<em> $ sudo apt-get install apache2 openssl perl         </em></p>
 
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<p>We need 2 interfaces, one that connects to the internet and another that is used by CoovaChilli to manage our hotspot clients.
+We can use either 2 ethernet cables or an ethernet cable and a wifi dongle, the steps to be followed for either method is discussed below. <br>
+If we use a wireless dongle as the interface that connects to the internet, and an ethernet cable that is managed by CoovaChilli : </p>
 
-<p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
-      </section>
+<p>Back up every file before modifying it. (Just in case there’s a problem later and the original files are needed)</p>
 
+<p><em>wlan0</em> represents the wireless dongle and<em> eth0</em> represents the wired connection.<br>
+We need to make a few modifications to the /etc/network/interfaces file.</p>
+
+<p><em>$ sudo nano /etc/network/interfaces</em></p>
+
+<p>Make the following changes to the eth0 and wlan0 interfaces</p>
+
+<p><em>auto eth0</em><br>
+<em>iface eth0 inet static</em><br>
+<em>                address 10.1.1.1</em><br>
+<em>                netmask 255.255.255.0</em><br>
+<em>                network 10.1.1.0</em></p>
+
+<p><em>auto wlan0</em><br>
+<em>allow-hotplug wlan0</em><br>
+<em>iface wlan0 inet manual</em><br>
+<em>wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf</em><br>
+<em>iface wlan0 inet dhcp</em><br>
+<em>                wpa-ssid “”</em><br>
+<em>                wpa-psk “</em>”</p>
+
+<p>Note that the <em>SSID</em> and <em>Password</em> are from your internet-connected router.</p>
+
+<p>We now need to change the <em>wpa_supplicant.conf</em> file :</p>
+
+<p><em>$ sudo nano /etc/wpa_supplicant/wpa_supplicant.conf</em></p>
+
+<p>We need this in the file :</p>
+
+<p><em>network={</em><br>
+<em> ssid=”SSID”</em><br>
+<em> psk=”Password”</em><br>
+<em> proto=RSN</em><br>
+<em> key-mgmt=WPA-PSK</em><br>
+<em> pairwise=CCMP</em><br>
+<em> auth_alg=OPEN</em><br>
+<em> }</em></p>
+
+<p>Now we can go ahead and restart the networking service or reboot the pi.<br>
+(Restart n/w service —&gt; <em>$</em> <em>sudo /etc/init.d/networking restart</em>)</p>
+
+<p>Run <em>ifconfig</em> to make sure that <em>eth0</em> now has a static IP of 10.1.1.1</p>
+
+<p>If we use 2 ethernet cables :</p>
+
+<p><em>$ sudo nano /etc/network/interfaces</em></p>
+
+<p>Make the following changes to the eth0 and eth1 interfaces</p>
+
+<p><em>auto eth0</em><br>
+<em>iface eth0 inet static</em><br>
+<em>                address 10.1.1.1</em><br>
+<em>                netmask 255.255.255.0</em><br>
+<em>                network 10.1.1.0</em></p>
+
+<p><em>auto eth1</em><br>
+<em>allow-hotplug eth1</em><br>
+<em>iface eth1 inet dhcp</em><br></p>
+
+<p>Now we can go ahead and restart the networking service or reboot the pi.<br>
+(Restart n/w service —&gt; <em>$</em> <em>sudo /etc/init.d/networking restart</em>)</p>
+
+<p>Run <em>ifconfig</em> to make sure that <em>eth0</em> now has a static IP of 10.1.1.1</p>
+
+<p>Now we configure MySQL:</p>
+
+<p>We create an empty database for Free Radius in MySQL called <em>radius.</em></p>
+
+<p><em>$ mysql -u root -p -h localhost</em></p>
+
+<p>Enter the password set during installation, then create the database.</p>
+
+<p><em>mysql&gt; create database radius;</em></p>
+
+<p>Now, exit mysql and import <em>schema.sql</em> from <em>sql/mysql</em> to the database. Note that this can be done from within the <em>mysql</em> directory as a root user.</p>
+
+<p><em># mysql -u root -p radius &lt; schema.sql</em></p>
+
+<p>We can then see the tables using the <em>show tables</em> command within <em>mysql </em></p>
+
+<p>Now, we configure the radius server. We need to add an entry in /etc/freeradius/clients.conf for the local network. Remember to use the correct network.</p>
+
+<p><em>/etc/freeradius/# cat clients.conf</em></p>
+
+<p>Uncomment the line <em>$INCLUDE sql.conf</em></p>
+
+<p>Now we modify the <em>freeradius/sites-available/default</em> file to add <em>sql</em> to the <em>authorize</em>, <em>accounting</em>, <em>session</em> and <em>post-auth</em> sections.</p>
+
+<p><em># nano /etc/freeradius/sites-available/default</em></p>
+
+<p>Uncomment the <em>sql</em> line in each of the blocks.</p>
+
+<p>Now we can test to see if freeradius is configured properly.</p>
+
+<p><em># /usr/sbin/freeradius -X<br>
+NOTE that if an error binding port message is received, we need to use the ps -aux command to find the pid of running radius process and use kill -9 PID and execute above command again</em>.</p>
+
+<p>It should now be ready to process requests. Now, open up another terminal.<br>
+<em># radtest user1 password localhost 0 testing123</em></p>
+
+<p>This should output the following line :</p>
+
+<pre>rad_recv: <strong>Access-Accept</strong> packet from host 127.0.0.1 port ..., id= ..., length= ...</pre>
+
+<p>In case of any error, make sure that the user and password are entered correctly.</p>
+
+<p>Now, we install CoovaChili in <em>/usr/src , </em>within this directory, execute the command :</p>
+
+<p><em># wget <a href="http://ap.coova.org/chilli/coova-chilli-1.3.0.tar.gz">http://ap.coova.org/chilli/coova-chilli-1.3.0.tar.gz</a></em></p>
+
+<p>Unpack the file :</p>
+
+<p><em>/usr/src # tar xzf coova-chilli-1.3.0.tar.gz</em></p>
+
+<p>Enter the newly created <em>coova-chilli-1.3.0</em> directory, we are now ready to configure the source code.</p>
+
+<p><em>$ cd /usr/src/coova-chilli-1.3.0</em><br>
+(As a normal user)</p>
+
+<p><em>$ ./configure –prefix=/usr</em><br>
+<em> –mandir=\$${prefix}/share/man –infodir=\$${prefix}/share/info \</em><br>
+<em> –sysconfdir=/etc –localstatedir=/var –enable-largelimits \</em><br>
+<em> –enable-binstatusfile –enable-statusfile –enable-chilliproxy \</em><br>
+<em> –enable-chilliradsec –enable-chilliredir –with-openssl –with-curl \</em><br>
+<em> –with-poll –enable-dhcpopt –enable-sessgarden –enable-dnslog \</em><br>
+<em> –enable-ipwhitelist –enable-redirdnsreq –enable-miniconfig \</em><br>
+<em> –enable-libjson –enable-layer3 –enable-proxyvsa –enable-miniportal \</em><br>
+<em> –enable-chilliscript –enable-eapol –enable-uamdomainfile \</em><br>
+<em> –enable-modules –enable-multiroute</em></p>
+
+<p>Set the compatibility level to 9 to prevent an unstable <em>.deb</em> file.</p>
+
+<p><em>$ echo 9 &gt; debian/compat</em></p>
+
+<p>We next modify the <em>/usr/src/coova-chilli-1.3.0/debian/rules </em>to ensure that the necessary files are placed in the <em>/etc/chilli</em> directory instead of the one specified.</p>
+
+<p><em>$ sudo nano /usr/src/coova-chilli-1.3.0/debian/rules</em></p>
+
+<p>Replace the line :<br>
+<em>$(MAKE) DESTDIR=$(CURDIR)/debian/tmp install</em><br>
+with :<br>
+<em>$(MAKE) DESTDIR=/ install</em></p>
+
+<p>We compile the source code into a <em>.deb</em> file.</p>
+
+<p><em>/usr/src/coova-chilli-1.3.0 $ sudo dpkg-buildpackage –us –uc</em></p>
+
+<p>After this completes, we install the new<em> .deb</em> file.</p>
+
+<p><em>/usr/src $ sudo dpkg –i coova-chilli_1.3.0_armhf.deb</em></p>
+
+<p>We are then presented with a few options, select the default, <em>N</em>. After this, we get an error, “no such device”, this is because CoovaChilli hasn’t been configured yet.</p>
+
+<p>We now need haserl to create the cgi web scripts.</p>
+
+<p><em>/usr/src $ sudo wget <a href="http://downloads.sourceforge.net/project/haserl/haserl-devel/haserl-0.9.30.tar.gz">http://downloads.sourceforge.net/project/haserl/haserl-devel/haserl-0.9.30.tar.gz</a></em></p>
+
+<p><em>/usr/src $ sudo tar xzf haserl-0.9.30.tar.gz</em></p>
+
+<p><em> /usr/src/haserl-0.9.30 $ ./configure</em></p>
+
+<p><em> /usr/src/haserl-0.9.30 $ sudo make &amp;&amp; sudo make install</em></p>
+
+<p>We configure CoovaChilli.</p>
+
+<p><em># nano /etc/default/chilli</em></p>
+
+<p>We change the 0 to a 1 in the 1st line.</p>
+
+<p><em>START_CHILLI = 1</em></p>
+
+<p>Next, we edit the main config file. We assume that 2 ethernet cables are used. Navigate to <em>/etc/chilli </em>and create a copy of the defaults file and name it config</p>
+
+<p><em># nano /etc/chilli/config</em></p>
+
+<p><em>HS_WANIF = eth1<br>
+</em></p>
+
+<p><em>HW_LANIF = eth0<br>
+</em></p>
+
+<p><em>HS_NETWORK = 10.1.1.0<br>
+</em></p>
+
+<p><em>HS_UAMLISTEN = 10.1.1.1<br>
+</em></p>
+
+<p><em>HS_DNS1 = 8.8.8.8                            # Google DNS server<br>
+</em></p>
+
+<p><em>HS_UAMALLOW = 10.1.1.0/24</em></p>
+
+<p><em>HS_RADSECRET = testing123       # Can change later,needs to be changed in /etc/freeradius/clients.conf as well</em></p>
+
+<p><em>HS_LOC_NAME = “Guest AP”       # Name on login page<br>
+</em></p>
+
+<p>We use <em>iptables</em> to configure the firewall.</p>
+
+<p>Create<em> /etc/chilli/ipup.sh</em> with the following line :<br>
+<em>iptables -I POSTROUTING -t nat -0 $HS_WANIF -j MASQUERADE</em></p>
+
+<p>Add the path to haserl :</p>
+
+<p><em>$ sudo nano /etc/chilli/wwwsh</em></p>
+
+<p><em>haserl = $(which haserl 2&gt;/dev/null)</em> is replaced with:</p>
+
+<p><em>haserl = /usr/local/bin/haserl</em></p>
+
+<p>Now, we can start CoovaChilli (after a reboot, if so desired, as all services need to be restarted)</p>
+
+<p><em>$ sudo /etc/init.d/chilli start</em></p>
+
+<p>There should be a new interface,<em> tun0</em>, than can be checked with <em>ifconfig.</em></p>
+
+<p>Now, after disabling the DHCP server on the router, setting up your <em>SSID</em> and disabling any firewall security on the router, plug in an ethernet cable from the Raspberry pi to a LAN port, check to make sure that the wireless dongle is receiving an internet signal (from another router, else DHCP conflicts) and connect to the newly created network with another device, it should redirect to the Coova login page.<br>
+The only user as of now is user1 with the password ‘password’.</p>
+
+<p>Now, for a custom page for the captive portal :</p>
+
+<p>Create a new directory in <em>/var/www</em> and call it<em> uam</em>.</p>
+
+<p>We modify <em>/etc/chilli/config</em></p>
+
+<p>HS_UAMSERVER=10.101.100.72</p>
+
+<p>HS_UAMFORMAT=http://\$HS_UAMSERVER/uam/</p>
+
+<p>HS_UAMHOMEPAGE=http://\$HS_UAMLISTEN:\$HS_UAMPORT/www/coova.html</p>
+
+<p>Use the following link and save the file as index.html, and save it in /var/www/uam</p>
+
+<p><a href="http://dev.coova.org/svn/coova-chilli/doc/hotspotlogin.html" target="_blank">HTML using JSON interface</a></p>
+
+<p>Create a file, chilli.js in the same directory with the following contents:<br>
+<em>if (navigator.appVersion.indexOf(“MSIE”)!=-1)</em><br>
+<em>document.write(“&lt;script type=’text/javascript’ id=’chillicontroller’&gt;&lt;/script&gt;”);</em></p>
+
+<p><em>if (!window.queryObj) {</em><br>
+<em>    window.queryObj = new Object();</em><br>
+<em>    window.location.search.replace(new RegExp(“([^?=&amp;]+)(=([^&amp;]*))?”,”g”), function($0,$1,$2,$3) { queryObj[$1] = $3; });</em><br>
+<em>}</em></p>
+
+<p><em>if (queryObj[‘uamip’] != null &amp;&amp; queryObj[‘uamport’] != null) {</em><br>
+<em>    var script = document.getElementById(‘chillicontroller’);</em><br>
+<em>    if (script == null) {</em><br>
+<em>    script = document.createElement(‘script’);</em><br>
+<em>    script.id = ‘chillicontroller';</em><br>
+<em>    script.type = ‘text/javascript';</em><br>
+<em>        script.src = ‘<a href="http://%E2%80%99+queryObj%5B%E2%80%98uamip%E2%80%99%5D+">http://’+queryObj%5B‘uamip’%5D+</a>':’+queryObj[‘uamport’]+’/www/chillijs.chi';</em></p>
+
+<p><em>        var head = document.getElementsByTagName(“head”)[0];</em><br>
+<em>        if (head == null) head = document.body; </em><br>
+<em>    head.appendChild(script);</em><br>
+<em>    }</em><br>
+<em>    script.src = ‘<a href="http://%E2%80%99+queryObj%5B%E2%80%98uamip%E2%80%99%5D+">http://’+queryObj%5B‘uamip’%5D+</a>':’+queryObj[‘uamport’]+’/www/chillijs.chi';</em><br>
+<em>} else {</em><br>
+<em>    var noLocation = document.getElementById(“noLocation”);</em><br>
+<em>    if (noLocation != null &amp;&amp; noLocation.style) {</em><br>
+<em>       noLocation.style.display = ‘inline';</em><br>
+<em>    }</em><br>
+<em>}</em></p>
+
+<p>Now, we can restart CoovaChilli and the changes should be seen.</p>
+
+<p>To enable CoovaChilli to start at boot time:</p>
+
+<p>Edit the following file:<br>
+<em>$ sudo /etc/init.d/chilli</em></p>
+
+<p><em># Provides: chilli</em><br>
+<em> # Required-Start: $network</em><br>
+<em> # Should-Start:</em><br>
+<em> # Required-Stop: $network</em><br>
+<em> # Should-Stop:</em><br>
+<em> # Default-Start: 2 3 4 5</em><br>
+<em> # Default-Stop: 0 1 6</em><br>
+<em> # Description: CoovaChilli access controller</em></p>
+
+<p>Then,enter the following command:<br>
+<em>$ sudo update-rc.d chilli defaults</em></p>
+
+<p>Adding Azure MFA to the mix :</p>
+
+<p>Create an Azure account and an MFA service. Download the required SDK from the<em> Manage</em> page and set it up, an example has been shown on the GitHub page.</p>
+
+<p>For further reference, code present on GitHub page</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/zethingy/Secure_network/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/zethingy/Secure_network/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/zethingy/Secure_network"></a> is maintained by <a href="https://github.com/zethingy">zethingy</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
+
+  
   </body>
 </html>
