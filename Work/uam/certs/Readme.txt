@@ -1,0 +1,1 @@
+Certificate files should be in this directory, download SDK after creating an MFA service.

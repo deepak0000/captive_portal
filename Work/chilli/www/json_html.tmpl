@@ -1,0 +1,164 @@
+<div id="Chilli">
+<div id="locationName"></div>
+
+<div id="chilliPage">
+<div id="logonPage" style="display:none;">
+<form onSubmit="return false;" name="logon">
+
+<!--
+<div id="openIDSelect" style="font-size:70%;padding-top:4px;float:right;display:none;">
+<a href="#" onclick="javascript:return openID();"><img border="0" src="CHILLIWWW/www/openid.gif"/></a>
+</div>
+
+<div id="openIDForm"
+style="display:none;background-color:white;position:absolute;padding:10px;border:solid 1px orange">
+OpenID URL: <input style="font-size:60%;" name="username" type="text" id="username" size="30" value="http://"/>
+</div>
+-->
+<style>
+body {
+background-color : #e3e2e2;
+}
+input[type="text"], input[type="text"] {
+  width: 98%;
+  padding: 15px 0px 15px 8px;
+  border-radius: 5px;
+  box-shadow: inset 4px 6px 10px -4px rgba(0, 0, 0, 0.3), 0 1px 1px -1px rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.1);
+  outline: none;
+  border: none;
+  border: 1px solid black;
+  margin-bottom: 10px;
+  color: #000000 ;
+  text-shadow: #000 0px 0px 1px;
+}
+
+input[type="submit"] {
+  width: 100%;
+  padding: 15px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FF0000 ), to(#680000 ));
+  background-image: -webkit-linear-gradient(#FF0000  0%, #680000  100%);
+  background-image: -moz-linear-gradient(#FF0000  0%, #680000  100%);
+  background-image: -o-linear-gradient(#FF0000  0%, #680000  100%);
+  background-image: linear-gradient(#FF0000  0%, #680000  100%);
+  font: 14px Oswald;
+  color: #FFF;
+  text-transform: uppercase;
+  text-shadow: #000 0px 1px 5px;
+  border: 1px solid #000;
+  opacity: 0.7;
+  -webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.7);
+  border-top: 1px solid rgba(255, 255, 255, 0.8) !important;
+  -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(50%, transparent), to(rgba(255, 255, 255, 0.2)));
+}
+
+input:focus {
+  box-shadow: inset 4px 6px 10px -4px rgba(0, 0, 0, 0.7), 0 1px 1px -1px rgba(255, 255, 2, 0.3);
+  background: rgba(0, 0, 0, 0);
+  -webkit-transition: 1s ease;
+  -moz-transition: 1s ease;
+  -o-transition: 1s ease;
+  -ms-transition: 1s ease;
+  transition: 1s ease;
+}
+
+input[type="submit"]:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+</style>
+<table id="logonTable" border="0">
+<tr>
+<td colspan="2" style="font-size:190%;">
+<div id="logonMessage" style="font-size:70%;padding-top:4px;"></div>
+</td>
+</tr>
+<body bgcolor="blue">
+<tr id="usernameRow">
+<td id="usernameLabel"><b>Name</b></td>
+<td><input name="username" type="text" id="username" required="true" placeholder="Enter name" size="100"/></td>
+</tr>
+<tr id="passwordRow">
+<td id="passwordLabel"><b>Mobile Number</b></td>
+<td><input name="password" type="text" id="password" required="true" placeholder="Enter mobile number" size="40"/></td>
+</tr>
+<tr id="CompanyRow">
+<td id="companyLabel"><b>Company Name</b></td>
+<td><input name="company" type="text" id="company" required="true" placeholder="Enter company name" size="40"/></td>
+</tr>
+<tr>
+
+<td colspan="2"><input id="button" type="submit" value="Verify" onClick="connect();"/></td>
+
+</tr>	
+<tr id="signUpRow">
+<td id="signUp" colspan="2" style="font-size: 50%">
+</td>
+</tr>
+</table>		
+</form>
+</div>
+
+<div id="statusPage" style="display:none;">
+<table border="0" id="statusTable" style="padding-top:4px;font-size:100%">
+<tr id="connectRow">
+<td><span id="statusMessage">Connected</span></td>
+<td><a href="#" onClick="return disconnect();">Logout</a></td>
+</tr>
+<tr id="sessionIdRow">
+<td id="sessionIdLabel" class="chilliLabel"><b>Session ID</b></td>
+<td id="sessionId" class="chilliValue">Not available</td>
+</tr>
+<tr id="sessionTimeoutRow">
+<td id="sessionTimeoutLabel" class="chilliLabel"><b>Max Session Time </b></td>
+<td id="sessionTimeout" class="chilliValue">Not available</td>
+</tr>
+<tr id="idleTimeoutRow">
+<td id="idleTimeoutLabel" class="chilliLabel"><b>Max Idle Time</b></td>
+<td id="idleTimeout" class="chilliValue">Not available</td>
+</tr>
+<tr id="startTimeRow">
+<td id="startTimeLabel" class="chilliLabel"><b>Start Time</b></td>
+<td id="startTime" class="chilliValue">Not available</td>
+</tr>
+<tr id="sessionTimeRow">
+<td id="sessionTimeLabel" class="chilliLabel"><b>Session Time</b></td>
+<td id="sessionTime" class="chilliValue">Not available</td>
+</tr>
+<tr id="idleTimeRow">
+<td id="idleTimeLabel" class="chilliLabel"><b>Idle Time</b></td>
+<td id="idleTime" class="chilliValue">Not available</td>
+</tr>
+<tr id="inputOctetsRow">
+<td id="inputOctetsLabel" class="chilliLabel"><b>Downloaded</b></td>
+<td id="inputOctets" class="chilliValue">N/A</td>
+</tr>
+<tr id="outputOctetsRow">
+<td id="outputOctetsLabel" class="chilliValueLabel"><b>Uploaded</b></td>
+<td id="outputOctets" class="chilliValue">N/A</td>
+</tr>
+<tr id="originalURLRow">
+<td id="originalURLLabel" class="chilliValueLabel"><b>Original URL</b></td>
+<td id="originalURL" class="chilliValue">N/A</td>
+</tr>
+</table>
+</div>
+
+<div id="waitPage" style="">
+<img src="CHILLIWWW/www/wait.gif"/> Please wait...
+</div>
+
+<div id="errorPage" style="display:none;">
+<span id="errorMessage">Error</span>
+</div>
+</div>
+<!--div id="debugPage" style="display:inline;">
+<textarea id="debugarea" rows="20" cols="60">
+</textarea>
+</div-->
+</div>
