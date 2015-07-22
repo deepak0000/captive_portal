@@ -326,6 +326,17 @@ The only user as of now is user1 with the password ‘password’.</p>
 <em>}</em></p>
 
 <p>Now, we can restart CoovaChilli and the changes should be seen.</p>
+<p>Customize index page or use given example in the repository</p>
+
+<p>Adding Azure MFA to the mix :</p>
+
+<p>Create an Azure account and an MFA service. Download the required SDK from the<em> Manage</em> page and set it up, an example has been shown on the GitHub page.</p>
+<p>Creating an admin page to logout users:</p>
+<p>First create a database details in mysql with a table called ud</p><br>
+<em>mysql> create database details;</em>
+<br><em>mysql> use details;</em>
+<br><em>mysql> create table ud(name varchar(100), sid varchar(30), company varchar(100), mac varchar(20));</em>
+<p>Then create or use example code in GitHub page to set up admin page.</p><br>
 
 <p>To enable CoovaChilli to start at boot time:</p>
 
@@ -344,9 +355,6 @@ The only user as of now is user1 with the password ‘password’.</p>
 <p>Then,enter the following command:<br>
 <em>$ sudo update-rc.d chilli defaults</em></p>
 
-<p>Adding Azure MFA to the mix :</p>
-
-<p>Create an Azure account and an MFA service. Download the required SDK from the<em> Manage</em> page and set it up, an example has been shown on the GitHub page.</p>
 
 <p>For further reference, code present on GitHub page</p>
         </section>
