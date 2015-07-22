@@ -134,7 +134,7 @@ function connect() {
 	var res=getCookie("valid");
 	//var res2=getCookie("inval");
 	if(res=="1") {
-	chilliController.logon( "user2" , "pi123" ) ;
+	chilliController.logon( "user1" , "password" ) ;
 	document.getElementById("button").value="Verify";
 	document.getElementById("button").disabled=false;
 	}
