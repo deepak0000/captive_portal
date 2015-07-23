@@ -168,10 +168,11 @@ NOTE that if an error binding port message is received, we need to use the ps -a
 <pre>rad_recv: <strong>Access-Accept</strong> packet from host 127.0.0.1 port ..., id= ..., length= ...</pre>
 
 <p>In case of any error, make sure that the user and password are entered correctly.</p>
+<p>Start the freeradius daemon with <em>sudo /etc/init.d/freeradius start</em></p>
 <hr>
 <p>Now, we install CoovaChili in <em>/usr/src , </em>within this directory, execute the command :</p>
 
-<p><em># wget <a href="http://ap.coova.org/chilli/coova-chilli-1.3.0.tar.gz">http://ap.coova.org/chilli/coova-chilli-1.3.0.tar.gz</a></em></p>
+<p><em>sudo wget <a href="http://ap.coova.org/chilli/coova-chilli-1.3.0.tar.gz">http://ap.coova.org/chilli/coova-chilli-1.3.0.tar.gz</a></em></p>
 
 <p>Unpack the file :</p>
 
@@ -182,16 +183,16 @@ NOTE that if an error binding port message is received, we need to use the ps -a
 <p><em>$ cd /usr/src/coova-chilli-1.3.0</em><br>
 (As a normal user)</p>
 
-<p><em>$ ./configure –prefix=/usr</em><br>
-<em> –mandir=\$${prefix}/share/man –infodir=\$${prefix}/share/info \</em><br>
-<em> –sysconfdir=/etc –localstatedir=/var –enable-largelimits \</em><br>
-<em> –enable-binstatusfile –enable-statusfile –enable-chilliproxy \</em><br>
-<em> –enable-chilliradsec –enable-chilliredir –with-openssl –with-curl \</em><br>
-<em> –with-poll –enable-dhcpopt –enable-sessgarden –enable-dnslog \</em><br>
-<em> –enable-ipwhitelist –enable-redirdnsreq –enable-miniconfig \</em><br>
-<em> –enable-libjson –enable-layer3 –enable-proxyvsa –enable-miniportal \</em><br>
-<em> –enable-chilliscript –enable-eapol –enable-uamdomainfile \</em><br>
-<em> –enable-modules –enable-multiroute</em></p>
+<p><em>/usr/src/coova-chilli-1.3.0 $./configure  --prefix=/usr                                                                  --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info \
+--sysconfdir=/etc --localstatedir=/var --enable-largelimits \
+--enable-binstatusfile --enable-statusfile --enable-chilliproxy \
+--enable-chilliradsec --enable-chilliredir --with-openssl --with-curl \
+--with-poll --enable-dhcpopt --enable-sessgarden --enable-dnslog \
+--enable-ipwhitelist --enable-redirdnsreq --enable-miniconfig \
+--enable-libjson --enable-layer3 --enable-proxyvsa --enable-miniportal \
+--enable-chilliscript --enable-eapol --enable-uamdomainfile \
+--enable-modules --enable-multiroute
+</em></p>
 
 <p>Set the compatibility level to 9 to prevent an unstable <em>.deb</em> file.</p>
 
