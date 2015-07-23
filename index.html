@@ -136,7 +136,8 @@ We need to make a few modifications to the /etc/network/interfaces file.</p>
 <p><em>mysql&gt; create database radius;</em></p>
 
 <p>Now, exit mysql and import <em>schema.sql</em> from <em>sql/mysql</em> to the database. Note that this can be done from within the <em>mysql</em> directory as a root user.</p>
-
+<p><em>sudo -i</em></p>
+<p>Navigate to <em>/etc/freeradius/sql/mysql</em> and enter the command below</p>
 <p><em># mysql -u root -p radius &lt; schema.sql</em></p>
 
 <p>We can then see the tables using the <em>show tables</em> command within <em>mysql </em></p>
