@@ -259,15 +259,15 @@ For example, copy it to the Desktop, rename it to config and use <em>sudo cp -i 
 
 <p><em>$ sudo nano /etc/chilli/up.sh</em></p>
 <p>At the bottom of the file add the following line:</p>
-<p><em>iptables –I POSTROUTING –t nat –o $HS_WANIF –j MASQUERADE</em></p>
+<p><em>iptables -I POSTROUTING -t nat -o $HS_WANIF -j MASQUERADE</em></p>
 
 <p>Add the path to haserl :</p>
 
 <p><em>$ sudo nano /etc/chilli/wwwsh</em></p>
 
-<p><em>haserl = $(which haserl 2&gt;/dev/null)</em> is replaced with:</p>
+<p><em>haserl=$(which haserl 2&gt;/dev/null)</em> is replaced with:</p>
 
-<p><em>haserl = /usr/local/bin/haserl</em></p>
+<p><em>haserl=/usr/local/bin/haserl</em></p>
 
 <p>Now, we can start CoovaChilli (after a reboot, if so desired, as all services need to be restarted)</p>
 
