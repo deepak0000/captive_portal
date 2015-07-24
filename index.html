@@ -335,7 +335,9 @@ The only user as of now is user1 with the password ‘password’.</p>
 <em>mysql> create database details;</em>
 <br><em>mysql> use details;</em>
 <br><em>mysql> create table ud(name varchar(100), sid varchar(30), company varchar(100), mac varchar(20));</em>
-<p>Then create or use example code in GitHub page to set up admin page.</p><br>
+<p>Then create or use example code in GitHub page to set up admin page. To use the given admin page, we need to add www to the sudoers file :</p>
+<p><em>sudo visudo -f /etc/sudoers</em></p>
+<p>Add this line <em>www-data ALL=(ALL) NOPASSWD: ALL</em></p>
 <hr>
 <p>To enable CoovaChilli to start at boot time:</p>
 
