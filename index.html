@@ -284,16 +284,20 @@ The only user as of now is user1 with the password ‘password’.</p>
 
 <p>We modify <em>/etc/chilli/config</em></p>
 
-<p>HS_UAMSERVER=10.101.100.72</p>
+<p>HS_UAMSERVER=<Your IP></p>
 
 <p>HS_UAMFORMAT=http://\$HS_UAMSERVER/uam/</p>
 
 <p>HS_UAMHOMEPAGE=http://\$HS_UAMLISTEN:\$HS_UAMPORT/www/coova.html</p>
 
 <p>Use the following link and save the file as index.html, and save it in /var/www/uam</p>
-
 <p><a href="http://dev.coova.org/svn/coova-chilli/doc/hotspotlogin.html" target="_blank">HTML using JSON interface</a></p>
-
+<p>Alternatively, use the code provided and paste in appropriate directories. If this is done, the following steps may be ignored.
+NOTE THAT CERIFICATE FILES AND KEYS HAVE TO BE PASTED IN APPROPRIATE LOCATIONS :
+ 1. <em>/var/www/uam/certs</em>(For MFA) 
+ 2. <em>/var/www/uam/pf_auth.php </em>(For MFA)
+ 3. In the given admin page, set a username and password. 
+</p>
 <p>Create a file, chilli.js in the same directory with the following contents:<br>
 <em>if (navigator.appVersion.indexOf(“MSIE”)!=-1)</em><br>
 <em>document.write(“&lt;script type=’text/javascript’ id=’chillicontroller’&gt;&lt;/script&gt;”);</em></p>
