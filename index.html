@@ -296,7 +296,9 @@ The only user as of now is user1 with the password ‘password’.</p>
 NOTE THAT CERIFICATE FILES AND KEYS HAVE TO BE PASTED IN APPROPRIATE LOCATIONS :
  1. <em>/var/www/uam/certs</em>(For MFA) 
  2. <em>/var/www/uam/pf_auth.php </em>(For MFA)
- 3. In the given admin page, set a username and password. 
+ 3. In the given admin page, set a username and password, as well as the mysql password.
+ 4. In <em>/var/www/uam/rec.php, set the mysql password.</em>
+ 5. Run the following command as well to use the admin page, in case php is not upto date <em>sudo apt-get install php5-mysql</em>
 </p>
 <p>Create a file, chilli.js in the same directory with the following contents:<br>
 <em>if (navigator.appVersion.indexOf(“MSIE”)!=-1)</em><br>
