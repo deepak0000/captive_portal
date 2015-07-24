@@ -208,8 +208,8 @@ with :<br>
 
 <p><em>/usr/src $ sudo dpkg –i coova-chilli_1.3.0_armhf.deb</em></p>
 
-<p>We are then presented with a few options, select the default, <em>N</em>. After this, we get an error, “no such device”, this is because CoovaChilli hasn’t been configured yet.</p>
-
+<p>We are then presented with a few options, select the default, <em>N</em>. After this, we MAY get an error, “no such device”, this is because CoovaChilli hasn’t been configured yet.</p>
+<p>Now,rebbot the pi.</p>
 <p>We now need haserl to create the cgi web scripts.</p>
 
 <p><em>/usr/src $ sudo wget <a href="sudo wget http://downloads.sourceforge.net/project/haserl/haserl-devel/haserl-0.9.30.tar.gz">http://downloads.sourceforge.net/project/haserl/haserl-devel/haserl-0.9.30.tar.gz</a></em></p>
@@ -222,15 +222,16 @@ with :<br>
 <hr>
 <p>We configure CoovaChilli.</p>
 
-<p><em># nano /etc/default/chilli</em></p>
+<p><em>sudo nano /etc/default/chilli</em></p>
 
 <p>We change the 0 to a 1 in the 1st line.</p>
 
 <p><em>START_CHILLI = 1</em></p>
 
-<p>Next, we edit the main config file. We assume that 2 ethernet cables are used. Navigate to <em>/etc/chilli </em>and create a copy of the defaults file and name it config</p>
+<p>Next, we edit the main config file. We assume that 2 ethernet cables are used. Navigate to <em>/etc/chilli </em>and create a copy of the defaults file and name it config.
+For example, copy it to the Desktop, rename it to config and use <em>sudo cp -i /home/pi/Desktop/config /etc/chilli</em></p>
 
-<p><em># nano /etc/chilli/config</em></p>
+<p><em>sudo nano /etc/chilli/config</em></p>
 
 <p><em>HS_WANIF = eth1<br>
 </em></p>
@@ -256,8 +257,9 @@ with :<br>
 
 <p>We use <em>iptables</em> to configure the firewall.</p>
 
-<p>Create<em> /etc/chilli/ipup.sh</em> with the following line :<br>
-<em>iptables -I POSTROUTING -t nat -0 $HS_WANIF -j MASQUERADE</em></p>
+<p><em>$ sudo nano /etc/chilli/up.sh</em></p>
+<p>At the bottom of the file add the following line:</p>
+<p><em>iptables –I POSTROUTING –t nat –o $HS_WANIF –j MASQUERADE</em></p>
 
 <p>Add the path to haserl :</p>
 
